@@ -11,13 +11,13 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class CommentSectionComponent implements OnInit {
   public comments: CommentModel[] = [];
+  isDarkMode: boolean = false;
   newCommentText = '';
   currentUser: any;
   currentUserImage: any;
   modalVisible = false;
   modalMessage = '';
   onConfirmCallback: () => void = () => {};
-
   showDeleteConfirmation(message: string, onConfirm: () => void) {
     this.modalMessage = message;
     this.modalVisible = true;
@@ -102,6 +102,12 @@ export class CommentSectionComponent implements OnInit {
         }
       }
     );
+  }
+
+  toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
+    const body = document.body;
+    body.classList.toggle('dark-theme', this.isDarkMode);
   }
 
   submitReply(parentCommentId: number): void {

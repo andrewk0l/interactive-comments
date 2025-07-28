@@ -3,111 +3,150 @@
   margin: 0 auto;
   padding: 24px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f6fa;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --card-bg: #f9f9f9;
+  --reply-bg: #f1f5f9;
+  --button-bg: #4f46e5;
+  --button-text: #ffffff;
+  --badge-bg: #487eb0;
+  padding: 1rem;
+  border-radius: 12px;
 }
 
 .section-title {
   font-size: 26px;
   font-weight: 600;
   margin-bottom: 20px;
-  color: #333;
+  color: var(--text-color);
+}
+
+.container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .comment-box {
-  background-color: #ffffff;
+  background-color: var(--card-bg);
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   padding: 20px;
   margin-bottom: 24px;
+  color: var(--text-color);
 }
 
 .comment-user {
   font-weight: 700;
   font-size: 15px;
-  color: #2f3640;
+  color: var(--text-color);
   margin-bottom: 8px;
 }
 
 .comment-content {
   font-size: 15px;
-  color: #353b48;
+  color: var(--text-color);
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
 .comment-date {
   font-size: 12px;
-  color: #aaa;
+  color: var(--text-color);
 }
 
 .replies {
   margin-top: 20px;
   padding-left: 24px;
   border-left: 3px solid #dcdde1;
+  color: var(--text-color);
 }
 
 .reply-box {
-  background-color: #f0f4ff;
+  background-color: var(--reply-bg);
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
   position: relative;
+  color: var(--text-color);
 }
 
 .reply-user {
   font-weight: 600;
   font-size: 14px;
-  color: #273c75;
+  color: var(--text-color);
   margin-bottom: 4px;
 }
 
 .replying-to {
   font-weight: normal;
-  color: #487eb0;
+  color: rgb(79, 79, 233);
   font-size: 13px;
   margin-left: 6px;
 }
 
 .reply-content {
   font-size: 14px;
-  color: #2f3640;
+  color: var(--text-color);
   margin-bottom: 6px;
   line-height: 1.5;
 }
 
 .reply-date {
   font-size: 12px;
-  color: #888;
+  color: var(--text-color);
 }
 
-/* Input area for new comment and replies */
-textarea {
-  width: 100%;
-  min-height: 60px;
-  padding: 10px;
-  font-size: 14px;
-  font-family: inherit;
-  border: 1px solid #dcdde1;
+.comment-section.dark-theme {
+  --bg-color: #1e1e1e;
+  --text-color: #f0f0f0;
+  --card-bg: #2c2c2c;
+  --reply-bg: #3a3a3a;
+  --button-bg: #2563eb;
+  --badge-bg: #2563eb;
+}
+
+.comment-box,
+.reply-box {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  padding: 1rem;
   border-radius: 8px;
-  resize: vertical;
-  margin-bottom: 10px;
-  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.replies {
+  padding-left: 1rem;
+  color: var(--text-color);
+}
+
+.reply-box {
+  background-color: var(--reply-bg);
 }
 
 button {
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  background-color: #487eb0;
+  background-color: var(--button-bg);
+  color: var(--button-text);
   border: none;
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
 }
 
-button:hover {
-  background-color: #40739e;
+textarea {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid #aaa;
+  padding: 0.5rem;
+  width: 100%;
+  resize: vertical;
+  min-height: 60px;
+  font-size: 14px;
+  font-family: inherit;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 .reply-input-box,
@@ -124,25 +163,20 @@ button:hover {
   vertical-align: middle;
 }
 
-/* Header section with user + actions */
 .comment-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
 }
+
 .reply-header {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
 }
 
-.reply-header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
+.reply-header-left,
 .comment-header-left {
   display: flex;
   align-items: center;
@@ -166,7 +200,6 @@ button:hover {
   justify-content: center;
 }
 
-/* Actions (reply, delete) */
 .comment-actions {
   display: flex;
   gap: 8px;
@@ -175,7 +208,7 @@ button:hover {
 
 .reply-btn {
   background-color: transparent;
-  color: #487eb0;
+  color: var(--button-bg);
   font-weight: 600;
   border: none;
   padding: 6px 12px;
@@ -185,7 +218,7 @@ button:hover {
 
 .reply-btn:hover {
   text-decoration: underline;
-  background-color: #f0f4ff;
+  background-color: var(--reply-bg);
   border-radius: 6px;
 }
 
@@ -194,8 +227,8 @@ button:hover {
 }
 
 .you-badge {
-  background-color: #487eb0;
-  color: white;
+  background-color: var(--badge-bg);
+  color: var(--text-color);
   font-size: 7px;
   font-weight: 600;
   padding: 2px 6px;
@@ -207,6 +240,132 @@ button:hover {
 .comment-box,
 .reply-box {
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .comment-section {
+    padding: 16px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .comment-box,
+  .reply-box {
+    padding: 16px;
+  }
+
+  .comment-user,
+  .reply-user {
+    font-size: 14px;
+  }
+
+  .comment-content,
+  .reply-content {
+    font-size: 14px;
+  }
+
+  .comment-date,
+  .reply-date {
+    font-size: 11px;
+  }
+
+  .comment-header,
+  .reply-header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .comment-header-left {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .comment-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .reply-btn .reply-text {
+    display: none;
+  }
+
+  .reply-btn {
+    font-size: 13px;
+    padding: 4px 10px;
+  }
+
+  textarea {
+    min-height: 50px;
+    font-size: 13px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .user-image {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+  }
+
+  .replies {
+    padding-left: 16px;
+    margin-top: 16px;
+    border-left-width: 2px;
+  }
+
+  .delete-btn.top-right {
+    bottom: 12px;
+    right: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 20px;
+  }
+
+  .comment-user,
+  .reply-user {
+    font-size: 13px;
+  }
+
+  .comment-content,
+  .reply-content {
+    font-size: 13px;
+  }
+
+  .comment-date,
+  .reply-date {
+    font-size: 10px;
+  }
+
+  .comment-box,
+  .reply-box {
+    padding: 12px;
+  }
+
+  button {
+    font-size: 13px;
+  }
+
+  .reply-btn {
+    padding: 4px 8px;
+  }
+
+  .delete-btn.top-right {
+    bottom: 12px;
+    right: 12px;
+  }
 }
 
 /* ============================

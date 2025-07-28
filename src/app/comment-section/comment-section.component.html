@@ -1,5 +1,9 @@
-<div class="comment-section">
-  <h2 class="section-title">Comments</h2>
+<div class="comment-section" [ngClass]="{ 'dark-theme': isDarkMode }">
+  <h2 class="section-title">
+    <button (click)="toggleTheme()">
+      {{ isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode" }}
+    </button>
+  </h2>
 
   <div *ngFor="let comment of comments" class="comment-box">
     <!-- Main Comment -->
