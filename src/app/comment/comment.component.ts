@@ -2,12 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommentModel } from './comment';
 import { CommentService } from '../comment.service';
 
-
 @Component({
   selector: 'app-comment',
   standalone: false,
   templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.css']
+  styleUrls: ['./comment.component.css'],
 })
 export class CommentComponent {
   @Input() comment!: CommentModel;

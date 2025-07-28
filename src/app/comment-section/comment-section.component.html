@@ -4,28 +4,41 @@
   <div *ngFor="let comment of comments" class="comment-box">
     <!-- Main Comment -->
     <div class="comment-header">
-  <div class="comment-header-left">
-    <img [src]="comment.user.image.png" alt="{{ comment.user.username }}" class="user-image" />
-    <div class="comment-user">
-  {{ comment.user.username }}
-  <span *ngIf="comment.user.username === currentUser.username" class="you-badge">you</span>
-</div>
-  </div>
+      <div class="comment-header-left">
+        <img
+          [src]="comment.user.image.png"
+          alt="{{ comment.user.username }}"
+          class="user-image"
+        />
+        <div class="comment-user">
+          {{ comment.user.username }}
+          <span
+            *ngIf="comment.user.username === currentUser.username"
+            class="you-badge"
+            >you</span
+          >
+        </div>
+      </div>
 
- <div class="comment-actions">
-    <button class="reply-btn" (click)="toggleReplyInput(comment.id)"><img src="../../assets/images/icon-reply.svg" alt="Reply" /> <span class="reply-text">Reply</span></button>
-    <button
-  *ngIf="comment.user.username === currentUser.username"
-  class="delete-btn top-right"
-  (click)="deleteComment(comment)"
-  title="Delete"
->
-  <img src="../../assets/images/icon-delete.svg" alt="Delete" />
-</button>
-  </div>
-</div>
+      <div class="comment-actions">
+        <button class="reply-btn" (click)="toggleReplyInput(comment.id)">
+          <img src="../../assets/images/icon-reply.svg" alt="Reply" />
+          <span class="reply-text">Reply</span>
+        </button>
+        <button
+          *ngIf="comment.user.username === currentUser.username"
+          class="delete-btn top-right"
+          (click)="deleteComment(comment)"
+          title="Delete"
+        >
+          <img src="../../assets/images/icon-delete.svg" alt="Delete" />
+        </button>
+      </div>
+    </div>
     <div class="comment-content">{{ comment.content }}</div>
-    <div class="comment-date">Posted: {{ getRelativeTime(comment.createdAt) }}</div>
+    <div class="comment-date">
+      Posted: {{ getRelativeTime(comment.createdAt) }}
+    </div>
 
     <!-- Reply Input Box -->
     <div *ngIf="replyInputVisible[comment.id]" class="reply-input-box">
@@ -38,31 +51,42 @@
 
     <!-- Replies -->
     <div *ngIf="comment.replies && comment.replies.length > 0" class="replies">
-    <div *ngFor="let reply of comment.replies" class="reply-box">
-  <button
-    *ngIf="reply.user.username === currentUser.username"
-    class="delete-btn top-right"
-    (click)="deleteReply(comment.id, reply.id)"
-    title="Delete"
-  >
-    <img src="../../assets/images/icon-delete.svg" alt="Delete" />
-  </button>
+      <div *ngFor="let reply of comment.replies" class="reply-box">
+        <button
+          *ngIf="reply.user.username === currentUser.username"
+          class="delete-btn top-right"
+          (click)="deleteReply(comment.id, reply.id)"
+          title="Delete"
+        >
+          <img src="../../assets/images/icon-delete.svg" alt="Delete" />
+        </button>
 
-  <div class="reply-header">
-    <div class="reply-header-left">
-      <img [src]="reply.user.image.png" alt="{{ reply.user.username }}" class="user-image" />
-      <div class="reply-user">
-        {{ reply.user.username }}
-        <span *ngIf="reply.user.username === currentUser.username" class="you-badge">you</span>
-        <span *ngIf="reply.replyingTo" class="replying-to">replying to {{ reply.replyingTo }}</span>
+        <div class="reply-header">
+          <div class="reply-header-left">
+            <img
+              [src]="reply.user.image.png"
+              alt="{{ reply.user.username }}"
+              class="user-image"
+            />
+            <div class="reply-user">
+              {{ reply.user.username }}
+              <span
+                *ngIf="reply.user.username === currentUser.username"
+                class="you-badge"
+                >you</span
+              >
+              <span *ngIf="reply.replyingTo" class="replying-to"
+                >replying to {{ reply.replyingTo }}</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="reply-content">{{ reply.content }}</div>
+        <div class="reply-date">
+          Posted: {{ getRelativeTime(reply.createdAt) }}
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="reply-content">{{ reply.content }}</div>
-  <div class="reply-date">Posted: {{ getRelativeTime(reply.createdAt) }}</div>
-</div>
-
     </div>
   </div>
 

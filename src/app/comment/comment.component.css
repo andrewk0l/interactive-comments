@@ -16,7 +16,7 @@
 
 .comment-content {
   flex: 1;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 .author {
@@ -82,7 +82,7 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 4px;
   resize: vertical;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 textarea:focus {

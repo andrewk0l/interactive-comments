@@ -2,7 +2,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 24px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f5f6fa;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .reply-box {
-   background-color: #f0f4ff;
+  background-color: #f0f4ff;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
@@ -125,14 +125,14 @@ button:hover {
 }
 
 /* Header section with user + actions */
-.comment-header{
+.comment-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
 }
-.reply-header{
-    display: flex;
+.reply-header {
+  display: flex;
   align-items: center;
   margin-bottom: 8px;
 }
@@ -160,7 +160,7 @@ button:hover {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 10; 
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -294,9 +294,9 @@ button:hover {
   }
 
   .delete-btn.top-right {
-      position: absolute;
-  bottom: 12px;
-  right: 12px;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
   }
 }
 
@@ -334,10 +334,8 @@ button:hover {
   }
 
   .delete-btn.top-right {
-   position: absolute;
-  bottom: 12px;
-  right: 12px;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
   }
 }
-
-
