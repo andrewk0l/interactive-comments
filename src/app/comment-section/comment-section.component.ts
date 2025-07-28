@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommentModel } from '../comment/comment';
 import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-comment-section',
@@ -35,7 +36,7 @@ cancelDelete() {
   replyInputVisible: { [key: number]: boolean } = {};
   replyText: { [key: number]: string } = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
   this.http.get<any>('assets/data/comments.json').subscribe({
@@ -43,6 +44,7 @@ cancelDelete() {
       this.comments = data.comments;
       this.currentUser = data.currentUser;
       this.currentUserImage = data.currentUser.image;
+      this.cdRef.detectChanges();
       console.log('Loaded comments:', this.comments);
     },
     error: (err) => {
