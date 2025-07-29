@@ -2,7 +2,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 24px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "rubik", sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
   --bg-color: #ffffff;
@@ -16,18 +16,45 @@
   border-radius: 12px;
 }
 
-.section-title {
-  font-size: 26px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: var(--text-color);
-}
-
 .container {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
 
+.vote-box {
+  background-color: #f5f6fa;
+  border-radius: 10px;
+  padding: 10px;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  color: #5357b6;
+}
+
+.vote-box button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #c5c6ef;
+  cursor: pointer;
+}
+
+.vote-box button:hover {
+  color: #5357b6;
+}
+
+.comment-main {
+  display: flex;
+  gap: 16px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
 .comment-box {
   background-color: var(--card-bg);
   border-radius: 10px;
@@ -39,13 +66,11 @@
 
 .comment-user {
   font-weight: 700;
-  font-size: 15px;
   color: var(--text-color);
   margin-bottom: 8px;
 }
 
 .comment-content {
-  font-size: 15px;
   color: var(--text-color);
   margin-bottom: 10px;
   line-height: 1.5;
@@ -62,19 +87,23 @@
   border-left: 3px solid #dcdde1;
   color: var(--text-color);
 }
+.content {
+  display: flex;
+}
 
 .reply-box {
-  background-color: var(--reply-bg);
-  border-radius: 8px;
+  display: flex;
+  gap: 16px;
+  background-color: white;
+  border-radius: 10px;
   padding: 16px;
-  margin-bottom: 16px;
-  position: relative;
-  color: var(--text-color);
+  margin-bottom: 12px;
+  align-items: flex-start;
 }
 
 .reply-user {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-color);
   margin-bottom: 4px;
 }
@@ -87,7 +116,6 @@
 }
 
 .reply-content {
-  font-size: 14px;
   color: var(--text-color);
   margin-bottom: 6px;
   line-height: 1.5;
@@ -142,7 +170,6 @@ textarea {
   width: 100%;
   resize: vertical;
   min-height: 60px;
-  font-size: 14px;
   font-family: inherit;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -164,7 +191,6 @@ textarea {
 }
 
 .comment-header {
-  display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
@@ -174,9 +200,14 @@ textarea {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+  font-size: 16px;
 }
 
-.reply-header-left,
+.reply-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .comment-header-left {
   display: flex;
   align-items: center;
@@ -184,20 +215,19 @@ textarea {
 }
 
 .delete-btn.top-right {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  margin: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: 200px;
+  background-color: inherit;
+  color: hsl(358, 79%, 66%);
+  font-family: "rubik", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+.edit-button {
+  background-color: inherit;
+  color: hsl(238, 40%, 52%);
+  font-family: "rubik", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .comment-actions {
@@ -213,7 +243,8 @@ textarea {
   border: none;
   padding: 6px 12px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  margin-left: 330px;
 }
 
 .reply-btn:hover {
@@ -224,12 +255,14 @@ textarea {
 
 .reply-text {
   margin-left: 6px;
+  font-size: 16px;
+  font-family: "rubik", sans-serif;
 }
 
 .you-badge {
   background-color: var(--badge-bg);
   color: var(--text-color);
-  font-size: 7px;
+  font-size: 11px;
   font-weight: 600;
   padding: 2px 6px;
   border-radius: 4px;
@@ -258,7 +291,7 @@ textarea {
 
   .comment-user,
   .reply-user {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .comment-content,
@@ -276,12 +309,6 @@ textarea {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-  }
-
-  .comment-header-left {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 6px;
   }
 
   .comment-actions {

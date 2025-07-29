@@ -1,94 +1,157 @@
-<div class="comment-section" [ngClass]="{ 'dark-theme': isDarkMode }">
-  <h2 class="section-title">
-    <button (click)="toggleTheme()">
-      {{ isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode" }}
-    </button>
-  </h2>
-
+<div class="comment-section">
   <div *ngFor="let comment of comments" class="comment-box">
-    <!-- Main Comment -->
-    <div class="comment-header">
-      <div class="comment-header-left">
-        <img
-          [src]="comment.user.image.png"
-          alt="{{ comment.user.username }}"
-          class="user-image"
-        />
-        <div class="comment-user">
-          {{ comment.user.username }}
-          <span
-            *ngIf="comment.user.username === currentUser.username"
-            class="you-badge"
-            >you</span
-          >
+    <div class="comment-main">
+      <div class="vote-box">
+        <button (click)="upvote(comment)">
+          <img src="../../assets/images/icon-plus.svg" alt="Upvote" />
+        </button>
+        <div class="score">{{ comment.score }}</div>
+        <button (click)="downvote(comment)">
+          <img src="../../assets/images/icon-minus.svg" alt="Downvote" />
+        </button>
+      </div>
+      <!-- Main Comment -->
+      <div class="content">
+        <div class="comment-header">
+          <div class="comment-header-left">
+            <img
+              [src]="comment.user.image.png"
+              alt="{{ comment.user.username }}"
+              class="user-image"
+            />
+            <div class="comment-user">
+              {{ comment.user.username }}
+              <span
+                *ngIf="comment.user.username === currentUser.username"
+                class="you-badge"
+                >you</span
+              >
+              <span style="font-weight: 400">
+                {{ getRelativeTime(comment.createdAt) }}
+              </span>
+            </div>
+
+            <div class="comment-actions">
+              <button
+                *ngIf="comment.user.username !== currentUser.username"
+                class="reply-btn"
+                (click)="toggleReplyInput(comment.id)"
+              >
+                <img src="../../assets/images/icon-reply.svg" alt="Reply" />
+                <span class="reply-text">Reply</span>
+              </button>
+              <button
+                *ngIf="comment.user.username === currentUser.username"
+                class="delete-btn top-right"
+                (click)="deleteComment(comment)"
+                title="Delete"
+              >
+                <img src="../../assets/images/icon-delete.svg" alt="Delete" />
+                Delete
+              </button>
+              <button
+                *ngIf="comment.user.username === currentUser.username"
+                class="edit-button"
+              >
+                <img src="../../assets/images/icon-edit.svg" alt="Edit" />
+                Edit
+              </button>
+            </div>
+          </div>
+
+          <div class="comment-content">{{ comment.content }}</div>
         </div>
       </div>
-
-      <div class="comment-actions">
-        <button class="reply-btn" (click)="toggleReplyInput(comment.id)">
-          <img src="../../assets/images/icon-reply.svg" alt="Reply" />
-          <span class="reply-text">Reply</span>
-        </button>
-        <button
-          *ngIf="comment.user.username === currentUser.username"
-          class="delete-btn top-right"
-          (click)="deleteComment(comment)"
-          title="Delete"
-        >
-          <img src="../../assets/images/icon-delete.svg" alt="Delete" />
-        </button>
-      </div>
-    </div>
-    <div class="comment-content">{{ comment.content }}</div>
-    <div class="comment-date">
-      Posted: {{ getRelativeTime(comment.createdAt) }}
     </div>
 
     <!-- Reply Input Box -->
-    <div *ngIf="replyInputVisible[comment.id]" class="reply-input-box">
+    <div
+      *ngIf="replyInputVisible[comment.id]"
+      class="reply-input-box"
+      style="display: flex; align-items: flex-start; gap: 8px"
+    >
+      <img
+        [src]="currentUser.image.png"
+        alt="{{ currentUser.username }}"
+        class="user-image"
+        style="width: 32px; height: 32px; border-radius: 50%"
+      />
+
       <textarea
         [(ngModel)]="replyText[comment.id]"
         placeholder="Write a reply..."
+        style="flex: 1; resize: none; height: 100px; padding: 8px"
       ></textarea>
-      <button (click)="submitReply(comment.id)">Send</button>
+
+      <button
+        (click)="submitReply(comment.id)"
+        style="height: 40px; font-family: 'rubik', sans-serif; font-size: 16px"
+      >
+        REPLY
+      </button>
     </div>
+    <!-- Edit Input Box -->
 
     <!-- Replies -->
     <div *ngIf="comment.replies && comment.replies.length > 0" class="replies">
       <div *ngFor="let reply of comment.replies" class="reply-box">
-        <button
-          *ngIf="reply.user.username === currentUser.username"
-          class="delete-btn top-right"
-          (click)="deleteReply(comment.id, reply.id)"
-          title="Delete"
-        >
-          <img src="../../assets/images/icon-delete.svg" alt="Delete" />
-        </button>
+        <div class="vote-box">
+          <button (click)="upvote(comment)">
+            <img src="../../assets/images/icon-plus.svg" alt="Upvote" />
+          </button>
+          <div class="score">{{ reply.score }}</div>
+          <button (click)="downvote(comment)">
+            <img src="../../assets/images/icon-minus.svg" alt="Downvote" />
+          </button>
+        </div>
+        <div class="reply-content-box">
+          <div class="reply-header">
+            <div class="reply-header-left">
+              <img
+                [src]="reply.user.image.png"
+                alt="{{ reply.user.username }}"
+                class="user-image"
+              />
+              <div class="reply-user">
+                {{ reply.user.username }}
+                <span
+                  *ngIf="reply.user.username === currentUser.username"
+                  class="you-badge"
+                  >you</span
+                >
 
-        <div class="reply-header">
-          <div class="reply-header-left">
-            <img
-              [src]="reply.user.image.png"
-              alt="{{ reply.user.username }}"
-              class="user-image"
-            />
-            <div class="reply-user">
-              {{ reply.user.username }}
-              <span
-                *ngIf="reply.user.username === currentUser.username"
-                class="you-badge"
-                >you</span
-              >
-              <span *ngIf="reply.replyingTo" class="replying-to"
-                >replying to {{ reply.replyingTo }}</span
-              >
+                <span style="font-weight: 400">
+                  {{ getRelativeTime(reply.createdAt) }}
+                </span>
+                <button
+                  *ngIf="reply.user.username === currentUser.username"
+                  class="delete-btn top-right"
+                  (click)="deleteReply(comment.id, reply.id)"
+                  title="Delete"
+                >
+                  <img src="../../assets/images/icon-delete.svg" alt="Delete" />
+                  Delete
+                </button>
+                <button
+                  *ngIf="reply.user.username === currentUser.username"
+                  class="edit-button"
+                >
+                  <img src="../../assets/images/icon-edit.svg" alt="Edit" />
+                  Edit
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="reply-content">{{ reply.content }}</div>
-        <div class="reply-date">
-          Posted: {{ getRelativeTime(reply.createdAt) }}
+          <div class="reply-content">
+            <span
+              style="font-size: 16px; font-weight: 600"
+              *ngIf="reply.replyingTo"
+              class="replying-to"
+            >
+              {{ "@" + reply.replyingTo }}&nbsp;
+            </span>
+            {{ reply.content }}
+          </div>
         </div>
       </div>
     </div>

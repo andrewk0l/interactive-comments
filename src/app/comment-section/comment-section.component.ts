@@ -11,7 +11,6 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class CommentSectionComponent implements OnInit {
   public comments: CommentModel[] = [];
-  isDarkMode: boolean = false;
   newCommentText = '';
   currentUser: any;
   currentUserImage: any;
@@ -35,6 +34,8 @@ export class CommentSectionComponent implements OnInit {
 
   replyInputVisible: { [key: number]: boolean } = {};
   replyText: { [key: number]: string } = {};
+  editInputVisible: { [commentId: number]: boolean } = {};
+  editedContent: { [commentId: number]: string } = {};
 
   constructor(private http: HttpClient, private cdRef: ChangeDetectorRef) {}
 
@@ -52,9 +53,28 @@ export class CommentSectionComponent implements OnInit {
       },
     });
   }
+  upvote(comment: any): void {
+    comment.score++;
+  }
+
+  downvote(comment: any): void {
+    if (comment.score > 0) {
+      comment.score--;
+    }
+  }
 
   toggleReplyInput(commentId: number): void {
     this.replyInputVisible[commentId] = !this.replyInputVisible[commentId];
+  }
+
+  toggleEditInput(comment: CommentModel): void {
+    const id = comment.id;
+    this.editInputVisible[id] = !this.editInputVisible[id];
+
+    // Only pre-fill content when toggling ON
+    if (this.editInputVisible[id]) {
+      this.editedContent[id] = comment.content;
+    }
   }
 
   addComment() {
@@ -78,6 +98,12 @@ export class CommentSectionComponent implements OnInit {
     }
   }
 
+  saveEditedComment(comment: CommentModel): void {
+    const id = comment.id;
+    comment.content = this.editedContent[id];
+    this.editInputVisible[id] = false;
+  }
+
   deleteComment(comment: CommentModel) {
     this.showDeleteConfirmation(
       'Are you sure you want to delete this comment?',
@@ -92,7 +118,7 @@ export class CommentSectionComponent implements OnInit {
 
   deleteReply(commentId: number, replyId: number) {
     this.showDeleteConfirmation(
-      'Are you sure you want to delete this reply?',
+      "Are you sure you want to delete this comment? This will remove the comment and can't be undone.",
       () => {
         const parentComment = this.comments.find((c) => c.id === commentId);
         if (parentComment && parentComment.replies) {
@@ -102,12 +128,6 @@ export class CommentSectionComponent implements OnInit {
         }
       }
     );
-  }
-
-  toggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
-    const body = document.body;
-    body.classList.toggle('dark-theme', this.isDarkMode);
   }
 
   submitReply(parentCommentId: number): void {

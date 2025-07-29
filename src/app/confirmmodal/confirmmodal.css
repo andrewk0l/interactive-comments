@@ -14,14 +14,17 @@
 
 .modal-box {
   background-color: #fff;
-  padding: 2rem;
-  border-radius: 1.25rem;
-  width: 90%;
+  padding-top: 1.5rem;
+  padding-right: 28px;
+  padding-bottom: 2rem;
+  padding-left: 28px;
+  border-radius: 0.35rem;
+  width: 100%;
   max-width: 420px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
   animation: slideIn 0.3s ease;
-  text-align: center;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  text-align: left;
+  font-family: "rubik", sans-serif;
 }
 
 .modal-box p {
@@ -42,15 +45,16 @@
   font-size: 1rem;
   font-weight: 600;
   border: none;
-  border-radius: 999px;
+  border-radius: 9px;
   cursor: pointer;
-  min-width: 120px;
+  min-width: 200px;
   transition: all 0.2s ease;
 }
 
 .btn.cancel {
   background-color: #e0e0e0;
   color: #333;
+  font-family: "rubik", sans-serif;
 }
 
 .btn.cancel:hover {
@@ -60,6 +64,7 @@
 .btn.confirm {
   background-color: #f44336;
   color: white;
+  font-family: "rubik", sans-serif;
 }
 
 .btn.confirm:hover {
