@@ -26,23 +26,24 @@
                 class="you-badge"
                 >you</span
               >
-              <span style="font-weight: 400">
+              <span style="font-weight: 400; color: hsl(211, 10%, 45%)">
                 {{ getRelativeTime(comment.createdAt) }}
               </span>
             </div>
 
             <div class="comment-actions">
-              <button
+              <!-- <button
                 *ngIf="comment.user.username !== currentUser.username"
                 class="reply-btn"
                 (click)="toggleReplyInput(comment.id)"
               >
                 <img src="../../assets/images/icon-reply.svg" alt="Reply" />
                 <span class="reply-text">Reply</span>
-              </button>
+              </button> -->
+
               <button
                 *ngIf="comment.user.username === currentUser.username"
-                class="delete-btn top-right"
+                class="comment-delete-btn"
                 (click)="deleteComment(comment)"
                 title="Delete"
               >
@@ -62,6 +63,16 @@
           <div class="comment-content">{{ comment.content }}</div>
         </div>
       </div>
+      <div class="rpl">
+        <button
+          *ngIf="comment.user.username !== currentUser.username"
+          class="reply-btn"
+          (click)="toggleReplyInput(comment.id)"
+        >
+          <img src="../../assets/images/icon-reply.svg" alt="Reply" />
+          <span class="reply-text">Reply</span>
+        </button>
+      </div>
     </div>
 
     <!-- Reply Input Box -->
@@ -80,10 +91,18 @@
       <textarea
         [(ngModel)]="replyText[comment.id]"
         placeholder="Write a reply..."
-        style="flex: 1; resize: none; height: 100px; padding: 8px"
+        style="
+          flex: 1;
+          resize: none;
+          height: 100px;
+          padding: 8px;
+          font-size: 16px;
+          font-family: 'rubik', sans-serif;
+        "
       ></textarea>
 
       <button
+        class="buttons"
         (click)="submitReply(comment.id)"
         style="height: 40px; font-family: 'rubik', sans-serif; font-size: 16px"
       >
@@ -113,32 +132,47 @@
                 class="user-image"
               />
               <div class="reply-user">
-                {{ reply.user.username }}
-                <span
-                  *ngIf="reply.user.username === currentUser.username"
-                  class="you-badge"
-                  >you</span
-                >
+                <div class="left-group">
+                  {{ reply.user.username }}
+                  <span
+                    *ngIf="reply.user.username === currentUser.username"
+                    class="you-badge"
+                    >you</span
+                  >
 
-                <span style="font-weight: 400">
-                  {{ getRelativeTime(reply.createdAt) }}
-                </span>
-                <button
-                  *ngIf="reply.user.username === currentUser.username"
-                  class="delete-btn top-right"
-                  (click)="deleteReply(comment.id, reply.id)"
-                  title="Delete"
-                >
-                  <img src="../../assets/images/icon-delete.svg" alt="Delete" />
-                  Delete
-                </button>
-                <button
-                  *ngIf="reply.user.username === currentUser.username"
-                  class="edit-button"
-                >
-                  <img src="../../assets/images/icon-edit.svg" alt="Edit" />
-                  Edit
-                </button>
+                  <span class="reply-date">
+                    {{ getRelativeTime(reply.createdAt) }}
+                  </span>
+                </div>
+                <!-- <div class="right-group">
+                  <button
+                    *ngIf="reply.user.username === currentUser.username"
+                    class="delete-btn top-right"
+                    (click)="deleteReply(comment.id, reply.id)"
+                    title="Delete"
+                  >
+                    <img
+                      src="../../assets/images/icon-delete.svg"
+                      alt="Delete"
+                    />
+                    Delete
+                  </button>
+                  <button
+                    *ngIf="reply.user.username !== currentUser.username"
+                    class="reply-btn3"
+                    (click)="toggleReplyInput(comment.id)"
+                  >
+                    <img src="../../assets/images/icon-reply.svg" alt="Reply" />
+                    <span class="reply-text">Reply</span>
+                  </button>
+                  <button
+                    *ngIf="reply.user.username === currentUser.username"
+                    class="edit-button"
+                  >
+                    <img src="../../assets/images/icon-edit.svg" alt="Edit" />
+                    Edit
+                  </button>
+                </div> -->
               </div>
             </div>
           </div>
@@ -153,17 +187,66 @@
             {{ reply.content }}
           </div>
         </div>
+        <div class="right-group">
+          <button
+            *ngIf="reply.user.username === currentUser.username"
+            class="delete-btn top-right"
+            (click)="deleteReply(comment.id, reply.id)"
+            title="Delete"
+          >
+            <img src="../../assets/images/icon-delete.svg" alt="Delete" />
+            Delete
+          </button>
+          <button
+            *ngIf="reply.user.username !== currentUser.username"
+            class="reply-btn3"
+            (click)="toggleReplyInput(comment.id)"
+          >
+            <img src="../../assets/images/icon-reply.svg" alt="Reply" />
+            <span class="reply-text">Reply</span>
+          </button>
+          <button
+            *ngIf="reply.user.username === currentUser.username"
+            class="edit-button"
+          >
+            <img src="../../assets/images/icon-edit.svg" alt="Edit" />
+            Edit
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Add New Comment -->
-  <div class="new-comment-section">
+  <div
+    style="display: flex; align-items: flex-start; gap: 8px"
+    class="new-comment-section"
+  >
+    <img
+      [src]="currentUser.image.png"
+      alt="{{ currentUser.username }}"
+      class="user-image"
+      style="width: 32px; height: 32px; border-radius: 50%"
+    />
     <textarea
       [(ngModel)]="newCommentText"
       placeholder="Add a comment..."
+      style="
+        flex: 1;
+        resize: none;
+        height: 100px;
+        padding: 8px;
+        font-size: 16px;
+        font-family: 'rubik', sans-serif;
+      "
     ></textarea>
-    <button (click)="addComment()">Add Comment</button>
+    <button
+      class="buttons"
+      (noclick)="addComment()"
+      style="height: 40px; font-family: 'rubik', sans-serif; font-size: 16px"
+    >
+      SEND
+    </button>
   </div>
 </div>
 
