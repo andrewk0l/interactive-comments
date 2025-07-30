@@ -144,35 +144,6 @@
                     {{ getRelativeTime(reply.createdAt) }}
                   </span>
                 </div>
-                <!-- <div class="right-group">
-                  <button
-                    *ngIf="reply.user.username === currentUser.username"
-                    class="delete-btn top-right"
-                    (click)="deleteReply(comment.id, reply.id)"
-                    title="Delete"
-                  >
-                    <img
-                      src="../../assets/images/icon-delete.svg"
-                      alt="Delete"
-                    />
-                    Delete
-                  </button>
-                  <button
-                    *ngIf="reply.user.username !== currentUser.username"
-                    class="reply-btn3"
-                    (click)="toggleReplyInput(comment.id)"
-                  >
-                    <img src="../../assets/images/icon-reply.svg" alt="Reply" />
-                    <span class="reply-text">Reply</span>
-                  </button>
-                  <button
-                    *ngIf="reply.user.username === currentUser.username"
-                    class="edit-button"
-                  >
-                    <img src="../../assets/images/icon-edit.svg" alt="Edit" />
-                    Edit
-                  </button>
-                </div> -->
               </div>
             </div>
           </div>
