@@ -409,6 +409,7 @@ textarea {
     align-self: flex-start;
     margin-top: -14px;
     width: fit-content;
+    margin-left: -15px;
   }
 
   .content {
