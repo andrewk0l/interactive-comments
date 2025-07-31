@@ -91,6 +91,10 @@
   color: var(--text-color);
   margin-left: 3rem;
 }
+
+.rpl {
+  display: none;
+}
 .content {
   display: flex;
 }
@@ -103,6 +107,7 @@
   padding: 16px;
   margin-bottom: 12px;
   align-items: flex-start;
+  word-break: break-word;
 }
 
 .reply-user {
@@ -124,9 +129,9 @@
 
 .reply-content {
   color: hsl(211, 10%, 45%);
-  margin-bottom: 6px;
   line-height: 1.5;
-  margin-top: 25px;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
 .reply-date {
@@ -216,14 +221,19 @@ textarea {
 }
 
 .left-group {
-  display: flex;
-  gap: 3px;
   flex: none;
   margin-top: 8px;
 }
 .right-group {
-  display: flex;
+  display: none;
   align-items: center;
+}
+
+.right-group-desktop {
+  display: flex;
+  margin-right: -20px;
+  margin-left: 90px;
+  margin-top: -25px;
 }
 
 .comment-header-left {
@@ -254,6 +264,7 @@ textarea {
   display: flex;
   gap: 8px;
   align-items: center;
+  margin-left: auto;
 }
 
 .buttons {
@@ -261,6 +272,28 @@ textarea {
 }
 
 .reply-btn {
+  background-color: transparent;
+  color: var(--button-bg);
+  font-weight: 600;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+}
+
+.reply-btndesktop {
+  background-color: transparent;
+  color: var(--button-bg);
+  font-weight: 600;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+}
+
+.reply-btndesktop3 {
   background-color: transparent;
   color: var(--button-bg);
   font-weight: 600;
@@ -278,7 +311,11 @@ textarea {
   padding: 6px 12px;
   cursor: pointer;
   font-size: 16px;
-  display: flex;
+  display: none;
+}
+
+.reply-header-right {
+  margin-left: 260px;
 }
 
 .reply-btn:hover {
@@ -432,7 +469,12 @@ textarea {
     font-size: 16px;
   }
 
+  .comment-actions {
+    display: none;
+  }
+
   .rpl {
+    display: block;
     align-self: flex-end;
     order: 2;
     margin-top: -68px;
@@ -443,10 +485,20 @@ textarea {
   }
 
   .reply-btn3 {
+    display: block;
     margin-bottom: 0px;
   }
 
   .right-group {
+    display: flex;
     margin-bottom: -35px;
+  }
+
+  .reply-header-right {
+    display: none;
+  }
+
+  .reply-btndesktop3 {
+    display: none;
   }
 }

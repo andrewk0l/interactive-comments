@@ -32,14 +32,14 @@
             </div>
 
             <div class="comment-actions">
-              <!-- <button
+              <button
                 *ngIf="comment.user.username !== currentUser.username"
-                class="reply-btn"
+                class="reply-btndesktop"
                 (click)="toggleReplyInput(comment.id)"
               >
                 <img src="../../assets/images/icon-reply.svg" alt="Reply" />
                 <span class="reply-text">Reply</span>
-              </button> -->
+              </button>
 
               <button
                 *ngIf="comment.user.username === currentUser.username"
@@ -143,6 +143,53 @@
                   <span class="reply-date">
                     {{ getRelativeTime(reply.createdAt) }}
                   </span>
+                  <div class="reply-header-right">
+                    <div class="right-group-desktop">
+                      <button
+                        *ngIf="reply.user.username === currentUser.username"
+                        class="delete-btn top-right"
+                        (click)="deleteReply(comment.id, reply.id)"
+                        title="Delete"
+                      >
+                        <img
+                          src="../../assets/images/icon-delete.svg"
+                          alt="Delete"
+                        />
+                        Delete
+                      </button>
+                      <button
+                        *ngIf="reply.user.username !== currentUser.username"
+                        class="reply-btn3"
+                        (click)="toggleReplyInput(comment.id)"
+                      >
+                        <img
+                          src="../../assets/images/icon-reply.svg"
+                          alt="Reply"
+                        />
+                        <span class="reply-text">Reply</span>
+                      </button>
+                      <button
+                        *ngIf="reply.user.username === currentUser.username"
+                        class="edit-button"
+                      >
+                        <img
+                          src="../../assets/images/icon-edit.svg"
+                          alt="Edit"
+                        />
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="rplbtn3" style="margin-left: 120px">
+                  <button
+                    *ngIf="reply.user.username !== currentUser.username"
+                    class="reply-btndesktop3"
+                    (click)="toggleReplyInput(comment.id)"
+                  >
+                    <img src="../../assets/images/icon-reply.svg" alt="Reply" />
+                    <span class="reply-text">Reply</span>
+                  </button>
                 </div>
               </div>
             </div>
