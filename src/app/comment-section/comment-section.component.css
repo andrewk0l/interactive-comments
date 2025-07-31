@@ -56,9 +56,7 @@
   align-items: flex-start;
 }
 .comment-box {
-  background-color: var(--card-bg);
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   padding: 20px;
   margin-bottom: 24px;
   color: var(--text-color);
@@ -149,7 +147,6 @@
 
 .comment-box,
 .reply-box {
-  background-color: white;
   color: var(--text-color);
   padding: 1rem;
   border-radius: 8px;
@@ -242,6 +239,7 @@ textarea {
   font-size: 16px;
   font-weight: 700;
   margin-left: 40px;
+  display: flex;
 }
 .edit-button {
   background-color: inherit;
@@ -249,6 +247,7 @@ textarea {
   font-family: "rubik", sans-serif;
   font-size: 16px;
   font-weight: 700;
+  display: flex;
 }
 
 .comment-actions {
@@ -375,8 +374,8 @@ textarea {
   }
 
   .reply-date {
-    margin-left: 0;
-    font-size: 12px;
+    margin-left: 5px;
+    font-size: 14px;
   }
 
   .replying-to {
