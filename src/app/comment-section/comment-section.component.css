@@ -347,7 +347,7 @@ textarea {
   position: relative;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .comment-section {
     padding: 1rem;
   }
@@ -374,27 +374,32 @@ textarea {
     align-items: flex-start;
     gap: 4px;
   }
-
-  .comment-actions,
+  .reply-btn3 {
+    display: block;
+    padding: 4px 8px;
+    font-size: 16px;
+    margin-left: 90px;
+  }
+  .reply-btndesktop3 {
+    display: none;
+  }
   .reply-btn,
-  .reply-btn3,
   .delete-btn,
   .edit-button {
     margin-left: 0 !important;
   }
 
-  .reply-btn,
-  .reply-btn3 {
+  .reply-btn {
     padding: 4px 8px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .vote-box {
     flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
+    width: 15%;
     padding: 8px;
     margin-bottom: 12px;
+    order: 1;
   }
 
   .left-group,
@@ -412,7 +417,7 @@ textarea {
 
   .reply-date {
     margin-left: 5px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .replying-to {
@@ -425,7 +430,7 @@ textarea {
 
   .comment-content,
   .reply-content {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 @media (max-width: 480px) {
